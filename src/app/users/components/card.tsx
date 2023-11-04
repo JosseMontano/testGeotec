@@ -9,10 +9,11 @@ interface Params {
   photo: string;
   nameUser: string;
   pageUser: string;
+  handleRedirect: (url: string) => void;
 }
 
 const CardComponent = (params: Params) => {
-  const { nameUser, photo, pageUser } = params;
+  const { nameUser, photo, pageUser, handleRedirect } = params;
   return (
     <Card sx={{ display: "flex", margin: 1, minWidth: 330, maxHeight: 130 }}>
       <CardMedia
@@ -43,7 +44,7 @@ const CardComponent = (params: Params) => {
           <Typography
             color="text.secondary"
             component="div"
-            onClick={() => redirectPage(pageUser)}
+            onClick={() => handleRedirect("repo/" + nameUser)}
             sx={{
               cursor: "pointer",
             }}

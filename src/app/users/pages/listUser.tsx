@@ -3,6 +3,8 @@ import { getUsers } from "../services/listUser";
 import { ListUser } from "../interfaces/listUser";
 import CardComponent from "../components/card";
 import { Grid } from "@mui/material";
+import UseRedirect from "../../../global/hooks/useRedirect";
+
 const ListUser = () => {
   const [data, setData] = useState<ListUser[]>([]);
   const handleGetUsers = async () => {
@@ -13,6 +15,9 @@ const ListUser = () => {
   useEffect(() => {
     handleGetUsers();
   }, []);
+
+  //redirect to repost
+  const { handleRedirect } = UseRedirect();
 
   return (
     <>
@@ -26,6 +31,7 @@ const ListUser = () => {
             nameUser={v.login}
             photo={v.avatar_url}
             pageUser={v.html_url}
+            handleRedirect={handleRedirect}
           />
         ))}
       </Grid>
