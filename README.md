@@ -12,6 +12,6 @@ you need have in your pc:
 ```js
    1. Clone the project
    2. Run pnpm i or npm i 
-   3. pnpm dev or npm run dev
+   3. Run pnpm dev or npm run dev
 ```
 
