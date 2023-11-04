@@ -3,39 +3,53 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-
+import { redirectPage } from "../../../global/utilities/redirectPage";
 interface Params {
   photo: string;
   nameUser: string;
+  pageUser: string;
 }
 
 const CardComponent = (params: Params) => {
-  const { nameUser, photo } = params;
+  const { nameUser, photo, pageUser } = params;
   return (
-    <Card sx={{ display: "flex", margin: 1, minWidth: 330 }}>
+    <Card sx={{ display: "flex", margin: 1, minWidth: 330, maxHeight: 130 }}>
       <CardMedia
         component="img"
         sx={{ width: 150 }}
         image={photo}
         alt="Live from space album cover"
       />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", minWidth: 330 - 150 }}
+      >
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">
             {nameUser}
           </Typography>
           <Typography
-            variant="subtitle1"
             color="text.secondary"
             component="div"
+            onClick={() => redirectPage(pageUser)}
+            sx={{
+              cursor: "pointer",
+            }}
           >
-            Pagina usuario
+            Visit user
           </Typography>
         </CardContent>
-        <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          <IconButton aria-label="play/pause">Proyectos</IconButton>
+        <Box sx={{ display: "flex", justifyContent: "flex-end", pb: 1, pr: 1 }}>
+          <Typography
+            color="text.secondary"
+            component="div"
+            onClick={() => redirectPage(pageUser)}
+            sx={{
+              cursor: "pointer",
+            }}
+          >
+            Proyectos
+          </Typography>
         </Box>
       </Box>
     </Card>

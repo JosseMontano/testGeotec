@@ -22,7 +22,11 @@ const ListUser = () => {
         sx={{ gridTemplateColumns: "repeat(4, minmax(330px, 1fr))" }}
       >
         {data.map((v) => (
-          <CardComponent nameUser={v.login} photo={v.avatar_url} />
+          <CardComponent
+            nameUser={v.login}
+            photo={v.avatar_url}
+            pageUser={v.html_url}
+          />
         ))}
       </Grid>
     </>
