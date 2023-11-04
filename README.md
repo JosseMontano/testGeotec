@@ -5,8 +5,8 @@ This project is working with: React + TypeScript + Vite + PNPM
 ## TOOLS
 you need have in your pc:
 * NODE
- - PNPM (If you don't have this one, you can use npm)
- - VITE
+* PNPM (If you don't have this one, you can use npm)
+* VITE
 
 ## STEPS
 ```js
