@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Loader from "../components/loader";
 type paramId = string;
 interface Params {
   param?: paramId;
@@ -29,9 +30,19 @@ const UseFetch = <T,>({ service, param, pagination, page }: Params) => {
     setLoading(false);
   };
 
-  const handleLoading = () => {
+  const handleLoading = (heightContainer: number) => {
     if (loading) {
-      return <p>loading</p>;
+      return (
+        <div
+          style={{
+            height: heightContainer,
+            display: "grid",
+            placeContent: "center",
+          }}
+        >
+          <Loader />
+        </div>
+      );
     }
   };
 

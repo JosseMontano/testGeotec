@@ -7,6 +7,7 @@ import CardComponent from "../components/card";
 import { Grid, Button, Box, Typography } from "@mui/material";
 //routes
 import { useParams } from "react-router-dom";
+import { sizeCard } from "../styles/card";
 
 type opChangePage = "goOn" | "goBack";
 
@@ -33,13 +34,18 @@ const ListRepos = () => {
   };
 
   return (
-    <>
+    <Box
+      height={"100vh"}
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"center"}
+    >
       <Grid
         container
         justifyContent={"center"}
         sx={{ gridTemplateColumns: "repeat(4, minmax(330px, 1fr))" }}
       >
-        {handleLoading()}
+        {handleLoading((sizeCard.height + 16) * 2)}
         {!loading &&
           data.map((v) => (
             <CardComponent
@@ -62,6 +68,7 @@ const ListRepos = () => {
           size="small"
           onClick={() => handleChangePage("goBack")}
           variant="contained"
+          disabled={numberPage == 1}
         >
           {"<"}
         </Button>
@@ -74,7 +81,7 @@ const ListRepos = () => {
           {">"}
         </Button>
       </Box>
-    </>
+    </Box>
   );
 };
 

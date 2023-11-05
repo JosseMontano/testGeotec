@@ -3,6 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { sizeCard } from "../styles/card";
 
 interface Params {
   name: string;
@@ -24,7 +25,7 @@ const CardComponent = (params: Params) => {
   }
 
   return (
-    <Card sx={{ width: 300, margin: 1 }}>
+    <Card sx={{ width: sizeCard.width, height: sizeCard.height, margin: 1 }}>
       <CardContent>
         <Typography variant="h5" component="div">
           {name}
