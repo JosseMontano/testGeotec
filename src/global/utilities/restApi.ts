@@ -1,4 +1,4 @@
-import { endpoint } from "../config/endpoint";
+import { endpoint, tokenGithub } from "../config/endpoint";
 
 export async function getRestApi<T>(
   url: string
@@ -6,7 +6,7 @@ export async function getRestApi<T>(
   const response = await fetch(endpoint + url, {
     method: "GET",
     headers: {
-      "authorization": "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",
+      authorization: "Bearer " + tokenGithub,
     },
   });
   const json = await response.json();
