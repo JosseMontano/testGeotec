@@ -4,16 +4,18 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { sizeCard } from "../styles/card";
+import { redirectPage } from "../../../global/utilities/redirectPage";
 
 interface Params {
   name: string;
   description: string;
   openIssues: number;
   forksCount: number;
+  fullName: string;
 }
 
 const CardComponent = (params: Params) => {
-  const { description, name, openIssues, forksCount } = params;
+  const { description, name, openIssues, forksCount, fullName } = params;
 
   //show the description of the card
   function showDescriptionJSX() {
@@ -35,10 +37,17 @@ const CardComponent = (params: Params) => {
           <br />
           Fork: {forksCount}
         </Typography>
-        <Typography variant="body2">{showDescriptionJSX()}</Typography>
+        <Typography variant="body2" height={80} overflow={"hidden"}>
+          {showDescriptionJSX()}
+        </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Sitio de github</Button>
+        <Button
+          size="small"
+          onClick={() => redirectPage("https://github.com/" + fullName)}
+        >
+          Project
+        </Button>
       </CardActions>
     </Card>
   );

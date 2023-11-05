@@ -54,6 +54,7 @@ const ListRepos = () => {
               name={v.name}
               forksCount={v.forks_count}
               openIssues={v.open_issues}
+              fullName={v.full_name}
             />
           ))}
       </Grid>
