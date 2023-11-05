@@ -18,6 +18,7 @@ const ShowUsers = (params: Params) => {
 
       {/* ======== SHOW DATA ======== */}
       {!loading &&
+        data.length > 0 &&
         data.map((v) => (
           <CardComponent
             nameUser={v.login}

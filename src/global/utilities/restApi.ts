@@ -6,7 +6,7 @@ export async function getRestApi<T>(
   const response = await fetch(endpoint + url, {
     method: "GET",
     headers: {
-      "authorization": "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",
+      "authorization": "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",
     },
   });
   const json = await response.json();

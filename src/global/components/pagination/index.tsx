@@ -1,5 +1,6 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { opChangePage } from "../../interfaces/pagination";
+import BtnComponent from "./btn";
 
 interface Params {
   handleChangePage: (op: opChangePage) => void;
@@ -16,22 +17,19 @@ const Index = (params: Params) => {
       alignItems={"center"}
       marginRight={1}
     >
-      <Button
-        size="small"
-        onClick={() => handleChangePage("goBack")}
-        variant="contained"
+      <BtnComponent
         disabled={disabled}
-      >
-        {"<"}
-      </Button>
+        handleChangePage={() => handleChangePage("goBack")}
+        txt="<"
+      />
+
       <Typography>{numberPage}</Typography>
-      <Button
-        size="small"
-        onClick={() => handleChangePage("goOn")}
-        variant="contained"
-      >
-        {">"}
-      </Button>
+
+      <BtnComponent
+        disabled={disabled}
+        handleChangePage={() => handleChangePage("goOn")}
+        txt=">"
+      />
     </Box>
   );
 };
