@@ -1,21 +1,20 @@
 //REACT
 import { useState } from "react";
-
 import { ListUser } from "../interfaces/listUser";
-import CardComponent from "../components/card";
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import UseRedirect from "../../../global/hooks/useRedirect";
 import UseFetch from "../../../global/hooks/useFetch";
 import { getUsers } from "../services/listUser";
-
-type opChangePage = "goOn" | "goBack";
+import ShowUsers from "../components/showUsers";
+import PaginationComp from "../../../global/components/pagination";
+import { opChangePage } from "../../../global/interfaces/pagination";
 
 const ListUser = () => {
   // ======== pagination ========
   const pagination = 12;
   const [sincePage, setSincePage] = useState(0);
   //get repos
-  const { data } = UseFetch<ListUser[]>({
+  const { data, handleLoading, loading } = UseFetch<ListUser[]>({
     service: getUsers,
     pagination: pagination,
     page: sincePage,
@@ -45,41 +44,20 @@ const ListUser = () => {
         justifyContent={"center"}
         sx={{ gridTemplateColumns: "repeat(4, minmax(330px, 1fr))" }}
       >
-        {data.length > 0 &&
-          data.map((v) => (
-            <CardComponent
-              nameUser={v.login}
-              photo={v.avatar_url}
-              pageUser={v.html_url}
-              handleRedirect={handleRedirect}
-              key={v.id}
-            />
-          ))}
+        {/* =========== SHOW LIST USERS =========== */}
+        <ShowUsers
+          data={data}
+          handleLoading={handleLoading}
+          handleRedirect={handleRedirect}
+          loading={loading}
+        />
       </Grid>
-
-      <Box
-        display={"flex"}
-        justifyContent={"flex-end"}
-        alignItems={"center"}
-        marginRight={1}
-      >
-        <Button
-          size="small"
-          onClick={() => handleChangePage("goBack")}
-          variant="contained"
-          disabled={sincePage / 16 == 0}
-        >
-          {"<"}
-        </Button>
-        <Typography>{sincePage / 16 + 1}</Typography>
-        <Button
-          size="small"
-          onClick={() => handleChangePage("goOn")}
-          variant="contained"
-        >
-          {">"}
-        </Button>
-      </Box>
+      {/* =========== PAGINATION =========== */}
+      <PaginationComp
+        handleChangePage={handleChangePage}
+        disabled={sincePage / 16 == 0}
+        numberPage={sincePage / 16 + 1}
+      />
     </Box>
   );
 };

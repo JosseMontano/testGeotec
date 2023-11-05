@@ -4,12 +4,12 @@ import { getRepos } from "../services/listRepos";
 import { ListRepos } from "../interfaces/listRepos";
 import CardComponent from "../components/card";
 //css
-import { Grid, Button, Box, Typography } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 //routes
 import { useParams } from "react-router-dom";
 import { sizeCard } from "../styles/card";
-
-type opChangePage = "goOn" | "goBack";
+import PaginationComp from "../../../global/components/pagination";
+import { opChangePage } from "../../../global/interfaces/pagination";
 
 const ListRepos = () => {
   const { name } = useParams();
@@ -59,29 +59,12 @@ const ListRepos = () => {
           ))}
       </Grid>
 
-      <Box
-        display={"flex"}
-        justifyContent={"flex-end"}
-        alignItems={"center"}
-        marginRight={1}
-      >
-        <Button
-          size="small"
-          onClick={() => handleChangePage("goBack")}
-          variant="contained"
-          disabled={numberPage == 1}
-        >
-          {"<"}
-        </Button>
-        <Typography>{numberPage}</Typography>
-        <Button
-          size="small"
-          onClick={() => handleChangePage("goOn")}
-          variant="contained"
-        >
-          {">"}
-        </Button>
-      </Box>
+      {/* =========== PAGINATION =========== */}
+      <PaginationComp
+        handleChangePage={handleChangePage}
+        disabled={numberPage == 1}
+        numberPage={numberPage}
+      />
     </Box>
   );
 };

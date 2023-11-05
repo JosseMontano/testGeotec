@@ -1,0 +1,1 @@
+export type opChangePage = "goOn" | "goBack";
