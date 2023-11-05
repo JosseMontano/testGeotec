@@ -25,11 +25,7 @@ const Index = (params: Params) => {
 
       <Typography>{numberPage}</Typography>
 
-      <BtnComponent
-        disabled={disabled}
-        handleChangePage={() => handleChangePage("goOn")}
-        txt=">"
-      />
+      <BtnComponent handleChangePage={() => handleChangePage("goOn")} txt=">" />
     </Box>
   );
 };

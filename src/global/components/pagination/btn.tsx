@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 
 interface Params {
   handleChangePage: () => void;
-  disabled: boolean;
+  disabled?: boolean;
   txt: string;
 }
 

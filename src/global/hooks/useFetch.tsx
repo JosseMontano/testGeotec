@@ -18,8 +18,11 @@ interface Params {
 const UseFetch = <T,>({ service, param, pagination, page }: Params) => {
   const [data, setData] = useState<T>({} as T);
   const [loading, setLoading] = useState(true);
-  const handleGetUsers = async () => {
+
+  // ======= SAVE THE DATA IN THE VAR 'data' =======
+  const handleGetData = async () => {
     setLoading(true);
+    // if there is a paramater, the function service need a parameter
     if (param) {
       const { json } = await service<T>(pagination, page, param);
       setData(json);
@@ -30,6 +33,7 @@ const UseFetch = <T,>({ service, param, pagination, page }: Params) => {
     setLoading(false);
   };
 
+  // ======= Show a loader while the loading is true =======
   const handleLoading = (heightContainer: number) => {
     if (loading) {
       return (
@@ -46,10 +50,12 @@ const UseFetch = <T,>({ service, param, pagination, page }: Params) => {
     }
   };
 
+  // ======= when the var 'page' change the function has to execute again =======
   useEffect(() => {
-    handleGetUsers();
+    handleGetData();
   }, [page]);
-  return { data, handleGetUsers, loading, handleLoading };
+
+  return { data, handleGetData, loading, handleLoading };
 };
 
 export default UseFetch;

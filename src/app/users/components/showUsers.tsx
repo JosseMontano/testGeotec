@@ -13,7 +13,6 @@ const ShowUsers = (params: Params) => {
   return (
     <>
       {/* ======== SHOW LOADING ======== */}
-
       {handleLoading((130 + 16) * 3)}
 
       {/* ======== SHOW DATA ======== */}

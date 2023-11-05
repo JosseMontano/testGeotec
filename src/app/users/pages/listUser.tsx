@@ -13,14 +13,14 @@ const ListUser = () => {
   // ======== pagination ========
   const pagination = 12;
   const [sincePage, setSincePage] = useState(0);
-  //get repos
+  //get users
   const { data, handleLoading, loading } = UseFetch<ListUser[]>({
     service: getUsers,
     pagination: pagination,
     page: sincePage,
   });
 
-  //redirect to repost
+  //function to redirect
   const { handleRedirect } = UseRedirect();
 
   // ======== change Page ========

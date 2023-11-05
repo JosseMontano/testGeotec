@@ -2,14 +2,15 @@ import { useState } from "react";
 import UseFetch from "../../../global/hooks/useFetch";
 import { getRepos } from "../services/listRepos";
 import { ListRepos } from "../interfaces/listRepos";
-import CardComponent from "../components/card";
+
 //css
-import { Grid, Box } from "@mui/material";
+import { Box } from "@mui/material";
 //routes
 import { useParams } from "react-router-dom";
-import { sizeCard } from "../styles/card";
+
 import PaginationComp from "../../../global/components/pagination";
 import { opChangePage } from "../../../global/interfaces/pagination";
+import ShowRepos from "../components/showRepos";
 
 const ListRepos = () => {
   const { name } = useParams();
@@ -25,6 +26,7 @@ const ListRepos = () => {
     page: numberPage,
   });
 
+  // ======== change number page ========
   const handleChangePage = (op: opChangePage) => {
     if (op == "goOn") {
       setNumberPage(numberPage + 1);
@@ -40,25 +42,7 @@ const ListRepos = () => {
       flexDirection={"column"}
       justifyContent={"center"}
     >
-      <Grid
-        container
-        justifyContent={"center"}
-        sx={{ gridTemplateColumns: "repeat(4, minmax(330px, 1fr))" }}
-      >
-        {handleLoading((sizeCard.height + 16) * 2)}
-        {!loading &&
-          data.map((v) => (
-            <CardComponent
-              key={v.id}
-              description={v.description}
-              name={v.name}
-              forksCount={v.forks_count}
-              openIssues={v.open_issues}
-              fullName={v.full_name}
-            />
-          ))}
-      </Grid>
-
+      <ShowRepos data={data} handleLoading={handleLoading} loading={loading} />
       {/* =========== PAGINATION =========== */}
       <PaginationComp
         handleChangePage={handleChangePage}
