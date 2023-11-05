@@ -12,6 +12,8 @@ you need have in your pc:
 ```js
    1. Clone the project
    2. Run pnpm i or npm i 
-   3. Run pnpm dev or npm run dev
+   3. Rename .env.local.copy to .env.local
+   4. Add TOKEN of our github in the env
+   5. Run pnpm dev or npm run dev
 ```
 
